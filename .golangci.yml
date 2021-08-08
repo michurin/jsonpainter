@@ -1,0 +1,85 @@
+linters-settings:
+  lll:
+    line-length: 160
+  dogsled:
+    max-blank-identifiers: 3
+  gci:
+    local-prefixes: github.com/michurin/jsonpainter
+  funlen:
+    lines: 80
+    statements: 60
+  cyclop:
+    max-complexity: 20
+linters:
+  disable-all: true
+  enable:
+    - bodyclose
+    - deadcode
+    - depguard
+    - dogsled
+    - dupl
+    - errcheck
+    - exhaustive
+    - exportloopref
+    - funlen
+    - goconst
+    - gocritic
+    - gocyclo
+    - gofmt
+    - goimports
+    - goprintffuncname
+    - gosec
+    - gosimple
+    - govet
+    - ineffassign
+    - lll
+    - misspell
+    - nakedret
+    - noctx
+    - nolintlint
+    - rowserrcheck
+    - staticcheck
+    - structcheck
+    - stylecheck
+    - typecheck
+    - unconvert
+    - unparam
+    - unused
+    - varcheck
+    - whitespace
+    - asciicheck
+    - cyclop
+    - durationcheck
+    - errorlint
+    - exhaustivestruct
+    - forbidigo
+    - forcetypeassert
+    - gci
+      # - gochecknoglobals
+    - gochecknoinits
+    - gocognit
+    - godot
+    - godox
+    - goerr113
+    - gofumpt
+    - goheader
+    - gomnd
+    - gomoddirectives
+    - gomodguard
+    - ifshort
+    - importas
+    - makezero
+    - nestif
+    - nilerr
+      # - nlreturn
+      # - paralleltest
+    - prealloc
+    - predeclared
+    - revive
+    - sqlclosecheck
+      # - testpackage
+    - thelper
+    - tparallel
+    - wastedassign
+    - wrapcheck
+      # - wsl
