@@ -1,4 +1,4 @@
-# Fuzzy JSON highlighting
+# Fuzzy JSON highlighting ![build](https://github.com/michurin/jsonpainter/actions/workflows/ci.yaml/badge.svg) [![codecov](https://codecov.io/gh/michurin/jsonpainter/branch/master/graph/badge.svg?token=WHEKURGJZ6)](https://codecov.io/gh/michurin/jsonpainter) [![go reference](https://pkg.go.dev/badge/github.com/michurin/jsonpainter.svg)](https://pkg.go.dev/github.com/michurin/jsonpainter)
 
 ## Install
 
@@ -24,4 +24,3 @@ Thanks to this, it can treat semi-JSON strings like this:
 
 - Streaming: obtain `io.Reader`
 - CLI tool
-- CI: testing, linting
