@@ -83,3 +83,9 @@ linters:
     - wastedassign
     - wrapcheck
       # - wsl
+issues:
+  # it is not a sin to be fmt.Print-ish as you are a demo-script
+  exclude-rules:
+    - path: demo/
+      linters:
+      - forbidigo
