@@ -94,10 +94,10 @@ func ExampleString_simplest() {
 
 func ExampleString_withOptions() {
 	opts := []jsonpainter.Option{
-		jsonpainter.ClrCtl(nil),              // We don't want to colorize {, }, [, ], :, and comma
-		jsonpainter.ClrKey(jsonpainter.Cyan), // Keys will be cyan
-		jsonpainter.ClrSpecStr(nil),          // Special values (true, false, null...) won't be painted
-		jsonpainter.ClrStr(nil),              // Strings won't be painted as well
+		jsonpainter.ClrCtl(jsonpainter.None),     // We don't want to colorize JSON punctuation
+		jsonpainter.ClrKey(jsonpainter.Cyan),     // Keys will be cyan
+		jsonpainter.ClrSpecStr(jsonpainter.None), // Special values (true, false, null...) won't be painted
+		jsonpainter.ClrStr(jsonpainter.None),     // Strings won't be painted as well
 	}
 	logline := `Req: {"rc": 1}`
 	fmt.Printf("%q", jsonpainter.String(logline, opts...))
