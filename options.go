@@ -1,6 +1,6 @@
 package jsonpainter
 
-type Option func(fsm *FSM)
+type Option func(fsm *finiteStateMachine)
 
 var (
 	Yellow    = []byte("\033[33;1m")
@@ -24,31 +24,31 @@ var (
 )
 
 func ClrKey(clr []byte) Option {
-	return func(fsm *FSM) {
+	return func(fsm *finiteStateMachine) {
 		fsm.clrKey = clr
 	}
 }
 
 func ClrSpecStr(clr []byte) Option {
-	return func(fsm *FSM) {
+	return func(fsm *finiteStateMachine) {
 		fsm.clrSpecStr = clr
 	}
 }
 
 func ClrStr(clr []byte) Option {
-	return func(fsm *FSM) {
+	return func(fsm *finiteStateMachine) {
 		fsm.clrStr = clr
 	}
 }
 
 func ClrCtl(clr []byte) Option {
-	return func(fsm *FSM) {
+	return func(fsm *finiteStateMachine) {
 		fsm.clrCtl = clr
 	}
 }
 
 func ClrOff(clr []byte) Option {
-	return func(fsm *FSM) {
+	return func(fsm *finiteStateMachine) {
 		fsm.clrOff = clr
 	}
 }

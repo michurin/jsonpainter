@@ -2,7 +2,7 @@ package jsonpainter
 
 func String(s string, opts ...Option) string {
 	out := []byte(nil)
-	fsm := NewFSM(opts...)
+	fsm := newFiniteStateMachine(opts...)
 	for _, c := range []byte(s) {
 		out = append(out, fsm.Next(c)...)
 	}

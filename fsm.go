@@ -7,7 +7,9 @@ const (
 	inNotStr
 )
 
-type FSM struct {
+// In fact, it is not true finite-state machine
+// since it considers brackets balance.
+type finiteStateMachine struct {
 	clrKey     []byte
 	clrSpecStr []byte
 	clrStr     []byte
@@ -20,8 +22,8 @@ type FSM struct {
 	lastSpace  []byte
 }
 
-func NewFSM(opts ...Option) *FSM {
-	fsm := &FSM{
+func newFiniteStateMachine(opts ...Option) *finiteStateMachine {
+	fsm := &finiteStateMachine{
 		clrKey:     Yellow,
 		clrSpecStr: Cyan,
 		clrStr:     nil,
@@ -39,7 +41,7 @@ func NewFSM(opts ...Option) *FSM {
 	return fsm
 }
 
-func (fsm *FSM) on(a []byte, c []byte) []byte {
+func (fsm *finiteStateMachine) on(a []byte, c []byte) []byte {
 	if len(c) == 0 || fsm.balance == 0 {
 		return a
 	}
@@ -47,7 +49,7 @@ func (fsm *FSM) on(a []byte, c []byte) []byte {
 	return append(a, c...)
 }
 
-func (fsm *FSM) off(a []byte) []byte {
+func (fsm *finiteStateMachine) off(a []byte) []byte {
 	if !fsm.colored {
 		return a
 	}
@@ -55,7 +57,7 @@ func (fsm *FSM) off(a []byte) []byte {
 	return append(a, fsm.clrOff...)
 }
 
-func (fsm *FSM) last(c []byte) []byte {
+func (fsm *finiteStateMachine) last(c []byte) []byte {
 	out := []byte(nil)
 	if fsm.lastWord != nil {
 		out = fsm.on(out, c)
@@ -70,14 +72,14 @@ func (fsm *FSM) last(c []byte) []byte {
 	return out
 }
 
-func (fsm *FSM) inc(c byte) {
+func (fsm *finiteStateMachine) inc(c byte) {
 	switch c {
 	case '{', '[':
 		fsm.balance++
 	}
 }
 
-func (fsm *FSM) dec(c byte) {
+func (fsm *finiteStateMachine) dec(c byte) {
 	if fsm.balance <= 0 {
 		return
 	}
@@ -87,7 +89,7 @@ func (fsm *FSM) dec(c byte) {
 	}
 }
 
-func (fsm *FSM) Next(c byte) []byte {
+func (fsm *finiteStateMachine) Next(c byte) []byte {
 	out := []byte(nil)
 	switch fsm.state {
 	case outOfString:
@@ -156,7 +158,7 @@ func (fsm *FSM) Next(c byte) []byte {
 	return out
 }
 
-func (fsm *FSM) Finish() []byte {
+func (fsm *finiteStateMachine) Finish() []byte {
 	out := []byte(nil)
 	out = fsm.off(out)
 	out = append(out, fsm.last(nil)...)
