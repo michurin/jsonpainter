@@ -4,6 +4,9 @@ linters-settings:
   dogsled:
     max-blank-identifiers: 3
   gci:
+    sections:
+      - prefix(github.com/michurin/jsonpainter)
+  goimports:
     local-prefixes: github.com/michurin/jsonpainter
   funlen:
     lines: 80
