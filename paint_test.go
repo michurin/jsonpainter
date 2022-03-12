@@ -49,20 +49,23 @@ func TestString(t *testing.T) {
 		in:   `[]]`,
 		exp:  `(C][[O)(C]][O)]`,
 	}}
+	// Setup fake escape sequences
 	optsColors := []jsonpainter.Option{
-		jsonpainter.ClrKey([]byte("(Q]")),
-		jsonpainter.ClrStr([]byte("(s]")),
-		jsonpainter.ClrSpecStr([]byte("(S]")),
-		jsonpainter.ClrCtl([]byte("(C]")),
-		jsonpainter.ClrOff([]byte("[O)")),
+		jsonpainter.ClrKey(jsonpainter.Color("(Q]")),
+		jsonpainter.ClrStr(jsonpainter.Color("(s]")),
+		jsonpainter.ClrSpecStr(jsonpainter.Color("(S]")),
+		jsonpainter.ClrCtl(jsonpainter.Color("(C]")),
+		jsonpainter.ClrOff(jsonpainter.Color("[O)")),
 	}
+	// Disable all kinds of highlighting
 	optsNoColors := []jsonpainter.Option{
-		jsonpainter.ClrKey(nil),
-		jsonpainter.ClrStr(nil),
-		jsonpainter.ClrSpecStr(nil),
-		jsonpainter.ClrCtl(nil),
-		jsonpainter.ClrOff(nil),
+		jsonpainter.ClrKey(jsonpainter.None),
+		jsonpainter.ClrStr(jsonpainter.None),
+		jsonpainter.ClrSpecStr(jsonpainter.None),
+		jsonpainter.ClrCtl(jsonpainter.None),
+		jsonpainter.ClrOff(jsonpainter.None),
 	}
+	// Check highlighting
 	for _, c := range cases {
 		c := c
 		t.Run("color_"+c.name, func(t *testing.T) {
@@ -72,6 +75,7 @@ func TestString(t *testing.T) {
 			}
 		})
 	}
+	// Check nothing changes if highlighting is disabled
 	for _, c := range cases {
 		c := c
 		t.Run("no_color_"+c.name, func(t *testing.T) {
