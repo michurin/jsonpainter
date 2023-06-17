@@ -37,5 +37,6 @@ Instead of painted text it you will show you control sequences ([ANSI escape cod
 
 ## Todo
 
+- The library gets to have too much heuristics. It has to be rethinking in terms of full-fledged parser.
 - Streaming: obtain `io.Reader`
 - CLI tool
