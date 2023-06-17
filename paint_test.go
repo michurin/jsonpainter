@@ -48,6 +48,18 @@ func TestString(t *testing.T) {
 		name: "overclosing",
 		in:   `[]]`,
 		exp:  `(C][[O)(C]][O)]`,
+	}, {
+		name: "bug_2023_06_1a",
+		in:   `""x`,
+		exp:  `""x`, // controversial behavior: no open brackets no color
+	}, {
+		name: "bug_2023_06_1b",
+		in:   `{} "" x`,
+		exp:  `(C]{[O)(C]}[O) "" x`,
+	}, {
+		name: "bug_2023_06_1c",
+		in:   `{""x`,
+		exp:  `(C]{[O)(s]""[O)(S]x[O)`, // JSON is broken, however we color it. Not sure it is correct behavior
 	}}
 	// Setup fake escape sequences
 	optsColors := []jsonpainter.Option{

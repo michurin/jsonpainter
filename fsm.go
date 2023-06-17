@@ -119,6 +119,7 @@ func (fsm *finiteStateMachine) Next(c byte) []byte {
 			fsm.lastWord = append(fsm.lastWord, c)
 			fsm.state = inQStr
 		default:
+			out = append(out, fsm.last(fsm.clrStr)...)
 			out = fsm.on(out, fsm.clrSpecStr)
 			out = append(out, c)
 			fsm.state = inNotStr
