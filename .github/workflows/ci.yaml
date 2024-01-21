@@ -3,12 +3,13 @@ name: build # this string appears on badge
 on:
   - push
   - pull_request
+  - workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       -
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       -
         uses: actions/setup-go@v4
         with:
@@ -17,7 +18,7 @@ jobs:
         name: "Run linter"
         uses: golangci/golangci-lint-action@v3
         with:
-          version: v1.53 # Required. Must be specified without patch version
+          version: v1.55 # Required. Must be specified without patch version
       -
         name: "Run coverage"
         run: "go test -v -race -coverprofile=coverage.txt -covermode=atomic ."
